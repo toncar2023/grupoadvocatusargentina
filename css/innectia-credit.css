@@ -1,0 +1,46 @@
+/* Pie Innectia — sutil, 100% ancho. Lima #C8FF3C, blanco #F0EEE7
+   Fondo: copia el nav (--innectia-credit-bg). Reserva --innectia-credit-h para que nada quede debajo. */
+:root{ --innectia-credit-h: 36px; --innectia-credit-bg: inherit; }
+html{ padding-bottom: var(--innectia-credit-h); box-sizing: border-box; }
+body{ padding-bottom: var(--innectia-credit-h); box-sizing: border-box; }
+.site-footer-fixed{
+  position:fixed; left:0; right:0; bottom:0;
+  z-index:70; width:100%;
+  display:flex; justify-content:center; align-items:center;
+  padding:6px 20px 7px;
+  background: var(--innectia-credit-bg);
+  border-top:1px solid rgba(238,231,216,.08);
+  font-size:10.5px; line-height:1.35; letter-spacing:.02em;
+  color:rgba(184,182,175,.72);
+  font-family:Inter,sans-serif;
+  pointer-events:none;
+}
+.site-footer-fixed p{margin:0; white-space:nowrap;}
+.site-footer-fixed a{pointer-events:auto;}
+.innectia-mark{
+  display:inline-flex; align-items:baseline;
+  text-decoration:none; font-weight:600; letter-spacing:.06em;
+  font-family:Inter,sans-serif; margin-left:4px; font-size:11px;
+  min-width:6.6em; opacity:.92;
+}
+.innectia-mark:hover{opacity:1;}
+.innectia-type .innect-g{color:rgba(200,255,60,.78);}
+.innectia-type .innect-w{color:rgba(240,238,231,.88);}
+.innectia-caret{
+  display:inline-block; width:1px; height:.8em;
+  background:rgba(200,255,60,.55); margin-left:2px; vertical-align:-1px;
+  animation:innectiaCaret 1.2s steps(1) infinite;
+}
+.innectia-mark.is-idle .innectia-caret{opacity:0; animation:none;}
+@keyframes innectiaCaret{0%,49%{opacity:.7;} 50%,100%{opacity:0;}}
+@media (prefers-reduced-motion: reduce){
+  .innectia-caret{animation:none; opacity:0;}
+}
+@media (max-width:720px){
+  .site-footer-fixed{padding:6px 12px;}
+  .site-footer-fixed p{white-space:normal;}
+}
+.lexw-launcher, .wa-float, #vigia{bottom: calc(var(--innectia-credit-h) + 12px) !important;}
+.lexw-teaser{bottom: calc(var(--innectia-credit-h) + 100px) !important;}
+.arrow-down{bottom: calc(var(--innectia-credit-h) + 8px) !important;}
+.mini-footer{bottom: var(--innectia-credit-h) !important;}
