@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.grupoadvocatusargentina.com/sitemap.xml
+Sitemap: https://grupoadvocatusargentina.com.ar/sitemap.xml

@@ -30,7 +30,7 @@
     bgColor: '#17140F',
     panelColor: '#211B13',
     textColor: '#F4EFE4',
-    mutedColor: '#A79D89',
+    mutedColor: '#C2B9A6',
     whatsappColor: '#25D366',
     inactivityMs: 20000,
     typingDelayMs: [550, 900]
@@ -198,12 +198,12 @@
   .lexw-badge{position:absolute;top:-3px;right:-3px;width:12px;height:12px;border-radius:50%;background:${CONFIG.whatsappColor};border:2px solid ${CONFIG.bgColor};}
 
   .lexw-teaser{position:fixed;bottom:100px;right:26px;z-index:2147482999;max-width:250px;background:${CONFIG.panelColor};
-    border:1px solid rgba(238,231,216,.24);border-radius:12px 12px 2px 12px;padding:12px 14px;font-size:12.5px;color:${CONFIG.textColor};
+    border:1px solid rgba(238,231,216,.24);border-radius:12px 12px 2px 12px;padding:12px 14px;font-size:15px;color:${CONFIG.textColor};
     box-shadow:0 8px 26px rgba(0,0,0,.45);opacity:0;transform:scale(.9) translateY(8px);transition:.3s ease;cursor:pointer;
     font-family:Inter,system-ui,sans-serif;}
   .lexw-teaser.lexw-show{opacity:1;transform:scale(1) translateY(0);}
-  .lexw-teaser b{color:${CONFIG.accentBright};display:block;margin-bottom:2px;font-size:11px;letter-spacing:.06em;}
-  .lexw-teaser-close{position:absolute;top:4px;right:6px;background:none;border:none;color:${CONFIG.mutedColor};font-size:13px;cursor:pointer;padding:2px;}
+  .lexw-teaser b{color:${CONFIG.accentBright};display:block;margin-bottom:2px;font-size:13.5px;letter-spacing:.06em;}
+  .lexw-teaser-close{position:absolute;top:4px;right:6px;background:none;border:none;color:${CONFIG.mutedColor};font-size:15px;cursor:pointer;padding:2px;}
 
   .lexw-panel{position:fixed;bottom:26px;right:26px;z-index:2147483001;width:352px;max-height:min(600px,78vh);
     background:${CONFIG.bgColor};border:1px solid rgba(238,231,216,.24);border-radius:16px;display:flex;flex-direction:column;
@@ -215,10 +215,10 @@
   .lexw-head .lexw-av{width:36px;height:36px;border-radius:50%;background:${CONFIG.bgColor};border:1px solid ${CONFIG.accentColor};
     display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .lexw-head-text{display:flex;flex-direction:column;overflow:hidden;}
-  .lexw-head-text b{font-size:13.5px;color:${CONFIG.accentBright};}
-  .lexw-head-text span{font-size:10.5px;color:${CONFIG.mutedColor};font-family:'JetBrains Mono',monospace;}
+  .lexw-head-text b{font-size:15.5px;color:${CONFIG.accentBright};}
+  .lexw-head-text span{font-size:13.5px;color:${CONFIG.mutedColor};font-family:'JetBrains Mono',monospace;}
   .lexw-head-btns{margin-left:auto;display:flex;gap:2px;flex-shrink:0;}
-  .lexw-icon-btn{background:none;border:none;color:${CONFIG.mutedColor};font-size:15px;line-height:1;cursor:pointer;
+  .lexw-icon-btn{background:none;border:none;color:${CONFIG.mutedColor};font-size:17px;line-height:1;cursor:pointer;
     padding:6px;border-radius:6px;transition:.2s;}
   .lexw-icon-btn:hover{color:${CONFIG.accentBright};background:rgba(201,168,118,.1);}
   .lexw-icon-btn:disabled{opacity:.3;cursor:default;}
@@ -232,7 +232,7 @@
   .lexw-body::-webkit-scrollbar{width:5px;}
   .lexw-body::-webkit-scrollbar-thumb{background:${CONFIG.accentColor};border-radius:3px;opacity:.5;}
 
-  .lexw-msg{max-width:88%;padding:10px 13px;border-radius:12px;font-size:12.8px;line-height:1.45;animation:lexw-fade .3s ease;}
+  .lexw-msg{max-width:88%;padding:10px 13px;border-radius:12px;font-size:15px;line-height:1.45;animation:lexw-fade .3s ease;}
   @keyframes lexw-fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
   .lexw-msg.lexw-bot{background:${CONFIG.panelColor};color:${CONFIG.textColor};border-bottom-left-radius:3px;align-self:flex-start;}
   .lexw-msg.lexw-user{background:#8B7042;color:#141210;border-bottom-right-radius:3px;align-self:flex-end;font-weight:600;}
@@ -245,16 +245,16 @@
 
   .lexw-opt-list{display:flex;flex-direction:column;gap:7px;margin-top:2px;}
   .lexw-opt-btn{background:transparent;border:1px solid rgba(238,231,216,.24);color:${CONFIG.accentBright};text-align:left;
-    padding:9px 12px;border-radius:8px;font-size:12.3px;transition:.18s;cursor:pointer;font-family:inherit;}
+    padding:9px 12px;border-radius:8px;font-size:14.5px;transition:.18s;cursor:pointer;font-family:inherit;}
   .lexw-opt-btn:hover,.lexw-opt-btn:focus-visible{background:rgba(201,168,118,.12);border-color:${CONFIG.accentColor};outline:none;}
 
   .lexw-final{display:flex;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid rgba(238,231,216,.10);}
   .lexw-final a{flex:1;text-align:center;background:${CONFIG.whatsappColor};color:#0c1f10;font-weight:700;padding:11px;
-    border-radius:8px;text-decoration:none;font-size:13px;}
+    border-radius:8px;text-decoration:none;font-size:15px;}
   .lexw-final button{background:transparent;border:1px solid rgba(238,231,216,.24);color:${CONFIG.mutedColor};
-    padding:11px 12px;border-radius:8px;font-size:12px;cursor:pointer;}
+    padding:11px 12px;border-radius:8px;font-size:14.5px;cursor:pointer;}
 
-  .lexw-disclaimer{font-size:9.5px;color:${CONFIG.mutedColor};text-align:center;padding:6px 16px 10px;opacity:.7;}
+  .lexw-disclaimer{font-size:12.5px;color:${CONFIG.mutedColor};text-align:center;padding:6px 16px 10px;opacity:.7;}
 
   @media (max-width:480px){
     .lexw-panel{width:calc(100vw - 20px);right:10px;bottom:86px;max-height:70vh;}
@@ -552,6 +552,7 @@
       if (panelOpen || teaserDismissed) return;
       teaserText.textContent = TEASER_MESSAGES[index] || TEASER_MESSAGES[0];
       teaser.classList.add('lexw-show');
+      setTimeout(() => teaser.classList.remove('lexw-show'), 9000);
       launcher.classList.add('lexw-attn');
       setTimeout(() => launcher.classList.remove('lexw-attn'), 2200);
     }
