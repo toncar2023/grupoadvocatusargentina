@@ -288,6 +288,32 @@ nav.menu{display:flex; gap:2px; flex-wrap:wrap; justify-content:center;}
 .arrow-down{bottom:14px;}
 @media (max-width:700px){.side-nav{right:10px;} .arrow-btn{width:34px; height:34px;}}
 
+
+/* ---------- MÓVIL: scroll continuo (sin paginado por pantallas) ---------- */
+@media (max-width:900px){
+  html,body{height:auto; overflow-x:hidden; overflow-y:auto;}
+  header{height:auto; padding:10px 14px 10px;}
+  .pager-viewport{height:auto; overflow:visible; margin-top:var(--header-h);}
+  .pager-track{transform:none !important; transition:none;}
+  .screen,.screen[data-slide="1"]{
+    height:auto; min-height:0; overflow:visible; justify-content:flex-start;
+    padding:36px 0 40px; scroll-margin-top:var(--header-h);
+  }
+  .screen[data-slide="0"]{padding-top:28px;}
+  .screen[data-slide="4"]{padding-bottom:70px;}
+  .reveal,.reveal-stagger > *{opacity:1 !important; transform:none !important; transition:none;}
+  .arrow-btn,.side-nav,.watermark{display:none !important;}
+  .ticker-wrap{max-width:100%;}
+  .eyebrow{font-size:13px; letter-spacing:.14em; line-height:1.5; align-items:flex-start;}
+  .eyebrow .rec{margin-top:6px; flex-shrink:0;}
+  .hero-h1{font-size:clamp(28px,8vw,38px);}
+  .section-head h2{font-size:clamp(25px,7vw,32px); line-height:1.2;}
+  .cta-row{flex-direction:column; align-items:stretch;}
+  .btn-primary,.btn-secondary{justify-content:center; width:100%;}
+  .contact-info{flex-direction:column; align-items:center; gap:8px; word-break:break-word; text-align:center;}
+  .close-wrap{padding:0 2px;}
+}
+
 /* ---------- CURSOR TRAIL / CLICK BURST ---------- */
 .trail-word{position:fixed; z-index:9998; pointer-events:none; font-family:'Playfair Display',serif; font-style:italic; font-size:15px; color:var(--gold); opacity:.55; text-shadow:0 0 8px rgba(201,168,118,0.5); transition:opacity .9s ease, transform .9s ease;}
 .click-ring{position:fixed; z-index:9997; pointer-events:none; width:12px; height:12px; border:1.5px solid var(--gold-bright); border-radius:50%; transform:translate(-50%,-50%); animation:ringOut .55s ease-out forwards;}
@@ -371,6 +397,7 @@ a.service-card{text-decoration:none; color:inherit;}
 .faq-card{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px 18px; transition:.25s;}
 .faq-card:hover{border-color:var(--gold);}
 .faq-card h4{font-size:15.5px; color:var(--gold-bright); margin-bottom:6px; font-family:'Inter',sans-serif; font-weight:700;}
+.faq-card p a,.section-head p a{color:var(--gold-bright); text-decoration:underline; text-underline-offset:3px;}
 .faq-card p{font-size:14.5px; color:var(--muted); line-height:1.5;}
 
 
@@ -655,7 +682,36 @@ function runReveal(idx){
   });
 }
 
+const mobileMQ = window.matchMedia('(max-width:900px)');
+const isMobile = ()=>mobileMQ.matches;
+function syncHeaderHeight(){
+  const hd = document.querySelector('header');
+  if(isMobile()) document.documentElement.style.setProperty('--header-h', hd.offsetHeight+'px');
+  else document.documentElement.style.removeProperty('--header-h');
+}
+syncHeaderHeight();
+window.addEventListener('load', syncHeaderHeight);
+
+function setActiveMenu(idx){
+  document.querySelectorAll('.menu-link[data-goto]').forEach(m=>{
+    m.classList.toggle('active', parseInt(m.getAttribute('data-goto'),10)===idx);
+  });
+}
+function closeDrawer(){
+  const drawer = document.getElementById('menuDrawer');
+  const toggle = document.getElementById('menuToggle');
+  if(drawer) drawer.classList.remove('open');
+  if(toggle) toggle.setAttribute('aria-expanded','false');
+}
+
 function goToSlide(idx){
+  if(isMobile()){
+    idx = Math.max(0, Math.min(total-1, idx));
+    closeDrawer();
+    const sec = document.querySelector('.screen[data-slide="'+idx+'"]');
+    if(sec) window.scrollTo({top: sec.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))||0), behavior:'smooth'});
+    return;
+  }
   if(isAnimating) return;
   idx = Math.max(0, Math.min(total-1, idx));
   isAnimating = true;
@@ -696,6 +752,7 @@ function screenCanScroll(screen, deltaY){
 
 let wheelCooldown = false;
 window.addEventListener('wheel', (e)=>{
+  if(isMobile()) return;
   if(e.target.closest('[data-lex-widget]')) return;
   if(screenCanScroll(currentScreen(), e.deltaY)) return;
   if(wheelCooldown) return;
@@ -707,10 +764,12 @@ window.addEventListener('wheel', (e)=>{
 
 let touchStartY = null;
 window.addEventListener('touchstart', (e)=>{
+  if(isMobile()) return;
   if(e.target.closest('[data-lex-widget]')) return;
   touchStartY = e.touches[0].clientY;
 }, {passive:true});
 window.addEventListener('touchend', (e)=>{
+  if(isMobile()) return;
   if(e.target.closest('[data-lex-widget]')) return;
   if(touchStartY===null) return;
   const diff = touchStartY - e.changedTouches[0].clientY;
@@ -722,18 +781,29 @@ window.addEventListener('touchend', (e)=>{
 }, {passive:true});
 
 window.addEventListener('keydown', (e)=>{
+  if(isMobile()) return;
   const tag = document.activeElement.tagName;
   if(tag==='INPUT' || tag==='TEXTAREA') return;
   if(e.key==='ArrowDown' || e.key==='PageDown'){ e.preventDefault(); goToSlide(current+1); }
   if(e.key==='ArrowUp' || e.key==='PageUp'){ e.preventDefault(); goToSlide(current-1); }
 });
 
-window.addEventListener('resize', ()=>{ goToSlideImmediate(current); });
+window.addEventListener('resize', ()=>{ syncHeaderHeight(); goToSlideImmediate(current); });
 function goToSlideImmediate(idx){
+  if(isMobile()){ track.style.transform=''; return; }
   const h = viewport.clientHeight;
   track.style.transition = 'none';
   track.style.transform = 'translateY(-' + (idx*h) + 'px)';
   requestAnimationFrame(()=>{ track.style.transition = ''; });
+}
+
+/* Móvil: marca la sección visible en el menú */
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver((entries)=>{
+    if(!isMobile()) return;
+    entries.forEach(en=>{ if(en.isIntersecting) setActiveMenu(parseInt(en.target.getAttribute('data-slide'),10)); });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('.screen').forEach(sc=>io.observe(sc));
 }
 
 /* =========================================================

@@ -153,6 +153,33 @@ html,body{height:100%; overflow:hidden; background:var(--bg); color:var(--text);
 }
 .btn-restart:hover{border-color:var(--muted); color:var(--text);}
 
+/* ─── MÓVIL ─────────────────────────────────── */
+@media(max-width:700px){
+  html,body{padding-bottom:0;}
+  .page{height:100vh; height:100dvh;}
+  .hd{padding:0 10px; height:auto; min-height:56px; gap:8px;}
+  .hd-brand{gap:8px; min-width:0;}
+  .hd-brand img{width:32px; height:32px;}
+  .hd-brand-text strong{font-size:13px; line-height:1.15;}
+  .hd-brand-text small{display:none;}
+  .hd-right{gap:6px; flex-shrink:0;}
+  .btn-back{font-size:0; padding:7px 10px;}
+  .btn-back::before{content:"←"; font-size:16px;}
+  .btn-wa{font-size:14px; padding:8px 11px; gap:0;}
+  .btn-wa svg{margin-right:0;}
+  .btn-wa{font-size:0;}
+  .btn-wa svg{width:20px; height:20px;}
+  .chat-header{padding:10px 12px; gap:10px; flex-wrap:wrap;}
+  .chat-avatar{width:34px; height:34px;}
+  .chat-info{min-width:0;}
+  .chat-info p{font-size:13.5px;}
+  .chat-thread{padding:14px 12px;}
+  .vmsg{max-width:92%;}
+  .chat-quick{padding:10px 12px 6px; gap:7px; max-height:38vh; overflow-y:auto;}
+  .chat-quick button{font-size:14.5px; padding:8px 12px;}
+  .chat-footer{padding:10px 12px 78px; font-size:13px;}
+}
+
 .sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);}
 </style>
 <link rel="stylesheet" href="css/innectia-credit.css">
@@ -171,7 +198,7 @@ html,body{height:100%; overflow:hidden; background:var(--bg); color:var(--text);
     </a>
     <div class="hd-right">
       <a class="btn-back" href="https://grupoadvocatusargentina.com.ar/">← Volver al sitio</a>
-      <a class="btn-wa" href="https://wa.me/5492216381600" target="_blank" rel="noopener">
+      <a class="btn-wa" href="https://wa.me/5492216381600" target="_blank" rel="noopener" aria-label="WhatsApp directo">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2z"/></svg>
         WhatsApp directo
       </a>

@@ -552,6 +552,7 @@
       if (panelOpen || teaserDismissed) return;
       teaserText.textContent = TEASER_MESSAGES[index] || TEASER_MESSAGES[0];
       teaser.classList.add('lexw-show');
+      setTimeout(() => teaser.classList.remove('lexw-show'), 9000);
       launcher.classList.add('lexw-attn');
       setTimeout(() => launcher.classList.remove('lexw-attn'), 2200);
     }
