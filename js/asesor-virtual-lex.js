@@ -21,7 +21,7 @@
      CONFIG — lo único que un editor de contenido debería tocar
      ========================================================= */
   const CONFIG = {
-    whatsappNumber: '5492216381600',
+    whatsappNumber: '5492216381900',
     brandName: 'Grupo Advocatus Argentina',
     advisorName: 'LEX',
     advisorRole: 'Asesor del estudio',

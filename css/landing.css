@@ -43,7 +43,20 @@ h1{font-size:clamp(28px,5vw,52px);line-height:1.08;margin-bottom:14px;}
 h2{font-size:clamp(22px,3vw,32px);margin-bottom:12px;}
 .prose p{color:var(--muted);line-height:1.65;margin-bottom:14px;font-size:17px;}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:28px 0;}
-@media(max-width:720px){.grid{grid-template-columns:1fr;} .brand span{display:none;} .btn-wa span{display:none;}}
+@media(max-width:720px){
+  .grid{grid-template-columns:1fr;}
+  header{flex-wrap:wrap;padding:10px 14px;gap:8px;}
+  .brand{flex:1 1 100%;}
+  .brand b{font-size:15px;}
+  .brand span{display:block;font-size:11.5px;}
+  .hd-actions{flex:1 1 100%;justify-content:flex-start;}
+  .btn-online{font-size:13px;padding:9px 12px;}
+  .btn-wa{padding:9px 14px;}
+  .hero{padding:36px 18px 48px;min-height:60vh;}
+  .wrap{padding:36px 18px;}
+  footer{padding:24px 18px 96px;}
+  footer span{display:block;margin-top:10px;}
+}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;}
 .card h3{font-family:Inter,sans-serif;font-size:17px;color:var(--gold-bright);margin-bottom:8px;}
 .card p,.card a{font-size:15px;color:var(--muted);line-height:1.5;text-decoration:none;}
